@@ -1,0 +1,21 @@
+{
+    "listen_port": 13510,
+    "upload": {
+        "path": "./public",
+        "limits": {
+            "files": 1,
+            "fileSize": 10485760
+        }
+    },
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "root",
+        "database": "MapStore"
+    },
+    "sequelize": {
+        "dialect": "mysql",
+        "logging": false
+    }
+}
