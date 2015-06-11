@@ -1,11 +1,10 @@
 'use strict';
 
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const WormholeStrategy = require('./passport-wormhole').Strategy;
 const User = require('../models').User;
-const Bearer = require('../models').Bearer;
+const OAuth2Strategy = require('passport-oauth2').Strategy;
 const co = require('co');
+const config = require('../config.json');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -18,34 +17,17 @@ passport.deserializeUser(function(userId, done) {
     }).catch(done);
 });
 
-passport.use('local', new LocalStrategy(function(username, password, done) {
-    co(function *() {
-        let condition = {
-            where: {
-                username: username
-            }
-        };
-        let user = yield User.find(condition);
-        if (!user) { return done(new Error('user does not exists')); }
-        if (user.password !== password) { return done(new Error('username or password not match')); }
-
-        done(null, user);
-    }).catch(done);
-}));
-
-passport.use('wormhole', new WormholeStrategy(function (token, done) {
-    co(function *() {
-        const bearer = yield Bearer.find({
-            where: {
-                token: token
-            }
-        });
-
-        if (!bearer) { return done('token expired or invalid'); }
-        const user = yield User.findById(bearer.userId);
-        if (!user) { return done('token may expired'); }
-        return done(null, user);
-    }).catch(done);
-}));
+passport.use('oauth2', new OAuth2Strategy({
+    authorizationURL: config.oauth2.authorization_url,
+    tokenURL: config.oauth2.token_url,
+    clientID: config.oauth2.client_id,
+    clientSecret: config.oauth2.client_secret,
+    callbackURL: config.oauth2.callback_url
+  }, function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ exampleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 
 module.exports = passport;

@@ -3,8 +3,7 @@
 const sequelize = require('../misc/db').sequelize;
 const Sequelize = require('../misc/db').Sequelize;
 
-// 具体的各种活动
-const Bearer = sequelize.define('Bearer', {
+const AccessToken = sequelize.define('AccessToken', {
     token: Sequelize.STRING,
     userId: Sequelize.INTEGER,
     expireIn: Sequelize.INTEGER,
@@ -12,4 +11,4 @@ const Bearer = sequelize.define('Bearer', {
     scope: Sequelize.STRING
 });
 
-module.exports = Bearer;
+module.exports = AccessToken;

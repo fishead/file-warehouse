@@ -1,7 +1,7 @@
 'use strict';
 
-const Bearer = require('./bearer');
 const User = require('./user');
+const AccessToken = require('./access_token');
 
 module.exports.User = User;
-module.exports.Bearer = Bearer;
+module.exports.AccessToken = AccessToken;
