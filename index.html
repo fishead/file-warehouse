@@ -92,16 +92,16 @@
 .markdown-preview pre.editor-colors, .markdown-preview[data-use-github-style] pre.editor-colors { margin-bottom: 16px; word-break: normal; }
 .markdown-preview code, .markdown-preview[data-use-github-style] code, .markdown-preview tt, .markdown-preview[data-use-github-style] tt, .markdown-preview pre.editor-colors, .markdown-preview[data-use-github-style] pre.editor-colors { font-family: Consolas, 'Liberation Mono', Courier, monospace; }
 .markdown-preview .emoji, .markdown-preview[data-use-github-style] .emoji { height: 20px; width: 20px; }
-.markdown-preview { font-size: 1.25em; color: rgb(80, 81, 83); background-color: rgb(255, 255, 255); }
-.markdown-preview h1, .markdown-preview h2 { color: inherit; border-color: rgb(218, 219, 220); }
+.markdown-preview { font-size: 1.25em; color: rgb(66, 66, 67); background-color: rgb(255, 255, 255); }
+.markdown-preview h1, .markdown-preview h2 { color: inherit; border-color: rgb(209, 209, 210); }
 .markdown-preview a { color: rgb(20, 146, 255); }
 .markdown-preview hr { background-color: rgb(255, 255, 255); }
-.markdown-preview blockquote { color: rgb(80, 81, 83); border-left-color: rgba(80, 81, 83, 0.701961); }
-.markdown-preview table th, .markdown-preview table td { border-color: rgb(218, 219, 220); }
+.markdown-preview blockquote { color: rgb(66, 66, 67); border-left-color: rgb(147, 147, 149); }
+.markdown-preview table th, .markdown-preview table td { border-color: rgb(209, 209, 210); }
 .markdown-preview table th { background-color: rgb(255, 255, 255); }
 .markdown-preview table tr { background-color: rgb(255, 255, 255); }
 .markdown-preview table tr:nth-child(2n) { background-color: rgb(247, 247, 247); }
-.markdown-preview code { color: rgb(104, 106, 110); border-color: rgb(218, 219, 220); background-color: rgb(247, 247, 247); background-clip: padding-box; }
+.markdown-preview code { color: rgb(91, 91, 93); border-color: rgb(209, 209, 210); background-color: rgb(247, 247, 247); background-clip: padding-box; }
 .markdown-preview pre.editor-colors::shadow .line.cursor-line { background-color: transparent; }
 .bracket-matcher .region {
   border-bottom: 1px dotted lime;
@@ -115,45 +115,45 @@
 pre.editor-colors,
 .host {
   background-color: #fafafa;
-  color: #545454;
+  color: #383a42;
 }
 pre.editor-colors .line.cursor-line,
 .host .line.cursor-line {
-  background-color: rgba(56, 75, 112, 0.07);
+  background-color: rgba(56, 58, 66, 0.04);
 }
 pre.editor-colors .invisible,
 .host .invisible {
-  color: #545454;
+  color: #383a42;
 }
 pre.editor-colors .cursor,
 .host .cursor {
-  border-left: 2px solid #528bff;
+  border-left: 2px solid #526fff;
 }
 pre.editor-colors .selection .region,
 .host .selection .region {
-  background-color: #e5e5e6;
+  background-color: #ededed;
 }
 pre.editor-colors .bracket-matcher .region,
 .host .bracket-matcher .region {
-  border-bottom: 1px solid #528bff;
+  border-bottom: 1px solid #526fff;
   box-sizing: border-box;
-  background-color: #eaeaeb;
+  background-color: #eaedfa;
 }
 pre.editor-colors .invisible-character,
 .host .invisible-character {
-  color: rgba(84, 84, 84, 0.4);
+  color: rgba(56, 58, 66, 0.2);
 }
 pre.editor-colors .indent-guide,
 .host .indent-guide {
-  color: rgba(84, 84, 84, 0.4);
+  color: rgba(56, 58, 66, 0.2);
 }
 pre.editor-colors .wrap-guide,
 .host .wrap-guide {
-  background-color: rgba(84, 84, 84, 0.4);
+  background-color: rgba(56, 58, 66, 0.2);
 }
 pre.editor-colors .gutter .line-number,
 .host .gutter .line-number {
-  color: #969696;
+  color: #9d9d9f;
   -webkit-font-smoothing: antialiased;
 }
 pre.editor-colors .gutter .line-number.git-line-removed:before,
@@ -172,8 +172,8 @@ pre.editor-colors .gutter .line-number.git-line-removed:after,
 }
 pre.editor-colors .gutter .line-number.cursor-line,
 .host .gutter .line-number.cursor-line {
-  color: #545454;
-  background-color: #efeff0;
+  color: #4d5375;
+  background-color: #f2f2f2;
 }
 pre.editor-colors .gutter .line-number.cursor-line-no-selection,
 .host .gutter .line-number.cursor-line-no-selection {
@@ -181,11 +181,11 @@ pre.editor-colors .gutter .line-number.cursor-line-no-selection,
 }
 pre.editor-colors .gutter .line-number .icon-right,
 .host .gutter .line-number .icon-right {
-  color: #545454;
+  color: #383a42;
 }
 pre.editor-colors .gutter .line-number .icon-right,
 .host .gutter .line-number .icon-right {
-  color: #545454;
+  color: #383a42;
 }
 pre.editor-colors .gutter .line-number.folded,
 .host .gutter .line-number.folded,
@@ -193,237 +193,323 @@ pre.editor-colors .gutter .line-number:after,
 .host .gutter .line-number:after,
 pre.editor-colors .fold-marker:after,
 .host .fold-marker:after {
-  color: #545454;
+  color: #4d5375;
 }
 .comment {
-  color: #7b7b79;
+  color: #a0a1a7;
   font-style: italic;
 }
 .entity.name.type {
-  color: #a58a03;
+  color: #c18401;
 }
 .entity.other.inherited-class {
-  color: #428b1c;
+  color: #50a14f;
 }
 .keyword {
-  color: #a71cce;
+  color: #a626a4;
 }
 .keyword.control {
-  color: #a71cce;
+  color: #a626a4;
 }
 .keyword.operator {
-  color: #545454;
+  color: #383a42;
 }
 .keyword.other.special-method {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .keyword.other.unit {
-  color: #893a01;
+  color: #986801;
 }
 .storage {
-  color: #a71cce;
+  color: #a626a4;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #a626a4;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #383a42;
 }
 .constant {
-  color: #893a01;
+  color: #986801;
+}
+.constant.variable {
+  color: #986801;
 }
 .constant.character.escape {
-  color: #0a8560;
+  color: #0184bc;
 }
 .constant.numeric {
-  color: #893a01;
+  color: #986801;
 }
 .constant.other.color {
-  color: #0a8560;
+  color: #0184bc;
 }
 .constant.other.symbol {
-  color: #0a8560;
+  color: #0184bc;
 }
 .variable {
-  color: #bf1212;
+  color: #e45649;
 }
 .variable.interpolation {
-  color: #b81332;
+  color: #ca1243;
 }
-.variable.parameter.function {
-  color: #545454;
+.variable.parameter {
+  color: #383a42;
 }
 .invalid.illegal {
-  background-color: #bf1212;
+  background-color: #e45649;
   color: #fafafa;
 }
 .string {
-  color: #428b1c;
+  color: #50a14f;
 }
 .string.regexp {
-  color: #0a8560;
+  color: #0184bc;
+}
+.string.regexp .source.ruby.embedded {
+  color: #c18401;
 }
 .string.other.link {
-  color: #bf1212;
+  color: #e45649;
 }
 .punctuation.definition.comment {
-  color: #7b7b79;
+  color: #a0a1a7;
 }
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
 .punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
 .punctuation.definition.array {
-  color: #545454;
+  color: #383a42;
 }
 .punctuation.definition.heading,
 .punctuation.definition.identity {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .punctuation.definition.bold {
-  color: #a58a03;
+  color: #c18401;
   font-weight: bold;
 }
 .punctuation.definition.italic {
-  color: #a71cce;
+  color: #a626a4;
   font-style: italic;
 }
 .punctuation.section.embedded {
-  color: #b81332;
+  color: #ca1243;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #383a42;
 }
 .support.class {
-  color: #a58a03;
+  color: #c18401;
 }
 .support.function {
-  color: #0a8560;
+  color: #0184bc;
 }
 .support.function.any-method {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .entity.name.function {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .entity.name.class,
 .entity.name.type.class {
-  color: #a58a03;
+  color: #c18401;
 }
 .entity.name.section {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .entity.name.tag {
-  color: #bf1212;
+  color: #e45649;
 }
 .entity.other.attribute-name {
-  color: #893a01;
+  color: #986801;
 }
 .entity.other.attribute-name.id {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .meta.class {
-  color: #a58a03;
+  color: #c18401;
+}
+.meta.class.body {
+  color: #383a42;
+}
+.meta.method-call,
+.meta.method {
+  color: #383a42;
+}
+.meta.definition.variable {
+  color: #e45649;
 }
 .meta.link {
-  color: #893a01;
+  color: #986801;
 }
 .meta.require {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .meta.selector {
-  color: #a71cce;
+  color: #a626a4;
 }
 .meta.separator {
   background-color: #373b41;
-  color: #545454;
+  color: #383a42;
 }
 .meta.tag {
-  color: #545454;
+  color: #383a42;
 }
 .none {
-  color: #545454;
+  color: #383a42;
 }
 .markup.bold {
-  color: #893a01;
+  color: #986801;
   font-weight: bold;
 }
 .markup.changed {
-  color: #a71cce;
+  color: #a626a4;
 }
 .markup.deleted {
-  color: #bf1212;
+  color: #e45649;
 }
 .markup.italic {
-  color: #a71cce;
+  color: #a626a4;
   font-style: italic;
 }
 .markup.heading .punctuation.definition.heading {
-  color: #1f51eb;
+  color: #4078f2;
 }
 .markup.inserted {
-  color: #428b1c;
+  color: #50a14f;
 }
 .markup.list {
-  color: #bf1212;
+  color: #e45649;
 }
 .markup.quote {
-  color: #893a01;
+  color: #986801;
 }
 .markup.raw.inline {
-  color: #428b1c;
+  color: #50a14f;
+}
+.source.cs .keyword.operator {
+  color: #a626a4;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #696c77;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #383a42;
 }
 .source.gfm .markup {
   -webkit-font-smoothing: auto;
 }
 .source.gfm .markup.heading {
-  color: #bf1212;
+  color: #e45649;
 }
 .source.gfm .markup.link {
-  color: #1f51eb;
+  color: #a626a4;
 }
 .source.gfm .link .entity {
-  color: #0a8560;
+  color: #4078f2;
 }
-.ruby.symbol > .punctuation {
+.source.ini .keyword.other.definition.ini {
+  color: #e45649;
+}
+.source.java .storage.modifier.import {
+  color: #c18401;
+}
+.source.java .storage.type {
+  color: #c18401;
+}
+.source.java-properties .meta.key-pair {
+  color: #e45649;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #383a42;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e45649;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e45649;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #50a14f;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #0184bc;
+}
+.source.ruby .constant.other.symbol > .punctuation {
   color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #a626a4;
+}
+.source.python .variable.parameter {
+  color: #986801;
 }
 </style>
   </head>
-  <body class='markdown-preview'><h2 id="host">Host</h2>
-<blockquote>
-<p><a href="http://map-store.jcbel.com">http://map-store.jcbel.com</a></p>
-</blockquote>
-<h2 id="-">注册</h2>
-<h3 id="-">获取注册页面</h3>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/sign</span></span></span></div></pre><blockquote>
-<p>实际URL为 <a href="http://map-store.jcbel.com/sign">http://map-store.jcbel.com/sign</a>, 下同  </p>
-</blockquote>
-<h2 id="-token">获取Token</h2>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/token</span></span></span></div></pre><h3 id="-">参数</h3>
+  <body class='markdown-preview'><h1 id="-">甲虫地图仓库</h1>
 <ul>
-<li>username</li>
-<li>password</li>
+<li>URL: <a href="http://map-warehouse.jcbel.com">http://map-warehouse.jcbel.com</a></li>
+<li>Version: v1</li>
+</ul>
+<h2 id="-">注册</h2>
+<h3 id="-"><del>获取注册页面</del></h3>
+<h3 id="-http-bootcamp-fishead-io">注册成为甲虫开发者 <a href="http://bootcamp.fishead.io">http://bootcamp.fishead.io</a></h3>
+<h2 id="-token">获取Token</h2>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/auth/token</span></span></span></div></pre><blockquote>
+<p>实际URL为 <a href="http://map-warehouse.jcbel.com/v1/auth/token">http://map-warehouse.jcbel.com/v1/auth/token</a>, 下同  </p>
+</blockquote>
+<h3 id="-">参数</h3>
+<ul>
+<li>username, 甲虫开发者帐号（email）</li>
+<li>password，甲虫开发者密码</li>
 </ul>
 <h3 id="-">返回值</h3>
 <pre class="editor-colors lang-json"><div class="line"><span class="source json"><span class="meta structure dictionary json"><span class="punctuation definition dictionary begin json"><span>{</span></span></span></span></div><div class="line"><span class="source json"><span class="meta structure dictionary json"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double json"><span class="punctuation definition string begin json"><span>&quot;</span></span><span>token</span><span class="punctuation definition string end json"><span>&quot;</span></span></span><span class="meta structure dictionary value json"><span class="punctuation separator dictionary key-value json"><span>:</span></span><span>&nbsp;</span><span class="string quoted double json"><span class="punctuation definition string begin json"><span>&quot;</span></span><span>token-string</span><span class="punctuation definition string end json"><span>&quot;</span></span></span></span></span></span></div><div class="line"><span class="source json"><span class="meta structure dictionary json"><span class="punctuation definition dictionary end json"><span>}</span></span></span></span></div></pre>
 <h2 id="-token">使用Token</h2>
 <ul>
-<li>附加到HTTP Header,字段名<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">wormtoken</code></li>
-<li>附加到Get请求的Query String，同时Get请求也可以使用上一种方式<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/maps/mapname?wormtoken=token-string</span></span></span></div></pre></li>
+<li>附加到HTTP Header,字段名<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">Authorization</code>，字段值为<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">Bearer token-string</code></li>
+<li><del>附加到Get请求的Query String，同时Get请求也可以使用上一种方式</del><pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/maps/FILENAME</span></span></span></div></pre><blockquote>
+<p>实际URL为 <a href="http://map-warehouse.jcbel.com/v1/maps/FILENAME">http://map-warehouse.jcbel.com/v1/maps/FILENAME</a>  </p>
+</blockquote>
+</li>
 </ul>
 <h2 id="map">Map</h2>
+<h3 id="-">上传</h3>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/maps</span></span></span></div></pre><h4 id="-">参数</h4>
 <ul>
-<li><p>upload</p>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/maps</span></span></span></div></pre><blockquote>
-<p>参数为一个文件表单，字段名随意，服务器会使用上传的文件的文件名存放文件</p>
-</blockquote>
-</li>
-<li><p>download</p>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/maps/FILENAME</span></span></span></div></pre><blockquote>
-<p>FILENAME 替换为上传的文件名</p>
+<li>map, 文件表单<blockquote>
+<p>参数为一个文件表单，表单名为<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">map</code>，服务器会使用上传的文件的文件名存放文件</p>
 </blockquote>
 </li>
 </ul>
+<h3 id="-">下载</h3>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/maps/FILENAME</span></span></span></div></pre><blockquote>
+<p>FILENAME 替换为上传的文件名  </p>
+</blockquote>
 <h2 id="routedata">RouteData</h2>
+<h3 id="-">上传</h3>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/routedatas</span></span></span></div></pre><h4 id="-">参数</h4>
 <ul>
-<li><p>upload</p>
-<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/routedatas</span></span></span></div></pre><blockquote>
+<li>routedata，文件表单<blockquote>
 <p>参数形式同map上传</p>
 </blockquote>
 </li>
-<li><p>download</p>
+</ul>
+<h3 id="-">下载</h3>
 <pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/routedatas/FILENAME</span></span></span></div></pre><blockquote>
 <p>同map下载</p>
-</blockquote>
-</li>
-</ul></body>
+</blockquote></body>
 </html>

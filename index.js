@@ -24,10 +24,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
 
-app.use(function (req, res, next) {
-    console.log(req.query);
-    next();
-});
 app.use('/v1', require('./v1'));
 
 app.get('/', function (req, res, next) {

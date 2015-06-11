@@ -3,8 +3,11 @@
 const passport = require('passport');
 const User = require('../models').User;
 const OAuth2Strategy = require('passport-oauth2').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
+const JWTStrategy = require('passport-jwt').Strategy;
 const co = require('co');
 const config = require('../config.json');
+const request = require('request');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -12,7 +15,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(userId, done) {
     co(function *() {
-        let user = yield User.findById();
+        let user = yield User.findOne(userId);
         done(null, user);
     }).catch(done);
 });
@@ -24,10 +27,96 @@ passport.use('oauth2', new OAuth2Strategy({
     clientSecret: config.oauth2.client_secret,
     callbackURL: config.oauth2.callback_url
   }, function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ exampleId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
+      request.get(config.oauth2.profile_url, {
+          headers: {
+              Authorization: 'Bearer ' + accessToken
+          }
+      }, function (error, response, body) {
+          profile = JSON.parse(body);
+      });
+
+      User.findOrCreate({
+          where: {
+              email: profile.email
+          },
+          defaults: {
+              accessToken: accessToken
+          }
+      }).then(function (user) {
+          done(null, user);
+      }).catch(function (err) {
+          done(err);
+      });
   }
 ));
+
+passport.use('local-wormhole', new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+}, function(username, password, done) {
+    request.post(config.oauth2.token_url, {
+        form: {
+            grant_type: 'password',
+            username: username,
+            password: password,
+            client_id: config.oauth2.client_id,
+            client_secret: config.oauth2.client_secret
+        }
+    }, function (err, res, body) {
+        if (err) { return done(err); }
+
+        if (res.statusCode === 200) {
+            const accessToken = JSON.parse(body).access_token;
+            request.get(config.oauth2.profile_url, {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                }
+            }, function (err, res, body) {
+                if (err) { return done(err); }
+
+                if (res.statusCode === 200) {
+                    co(function *() {
+                        const profile = JSON.parse(body);
+                        const result = yield User.findOrCreate({
+                            where: {
+                                email: profile.email
+                            },
+                            defaults: {
+                                accessToken: accessToken
+                            }
+                        });
+                        const user = result[0];
+                        done(null, user);
+                    }).catch(function (err) {
+                        // console.log(err.stack);
+                        done(err);
+                    });
+                }
+            });
+        }
+    });
+}));
+
+passport.use('jwt', new JWTStrategy({
+    secretOrKey: 'cfvgyjimkdcfgvjhm',
+    // issuer: 'wormhole',
+    // audience: '',
+    tokenBodyField: 'bearer',
+    tokenQueryParameterName: 'bearer',
+    authScheme: 'Bearer',
+    passReqToCallback: false
+}, function (payload, done) {
+    co(function *() {
+        // console.log(payload);
+        const user = yield User.findOne({
+            where: {
+                email: payload.email
+            }
+        });
+        // console.log(user);
+        if (!user) { return done(null, false); }
+        done(null, user);
+    }).catch(done);
+}));
 
 module.exports = passport;
