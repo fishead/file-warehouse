@@ -98,7 +98,7 @@ passport.use('local-wormhole', new LocalStrategy({
 }));
 
 passport.use('jwt', new JWTStrategy({
-    secretOrKey: 'cfvgyjimkdcfgvjhm',
+    secretOrKey: config.jwt.secret,
     // issuer: 'wormhole',
     // audience: '',
     tokenBodyField: 'bearer',
@@ -108,15 +108,22 @@ passport.use('jwt', new JWTStrategy({
 }, function (payload, done) {
     co(function *() {
         // console.log(payload);
-        const user = yield User.findOne({
+        let user = yield User.findOne({
             where: {
                 email: payload.email
             }
         });
+
+        user = payload;
+        user.id = payload.userId;
+
         // console.log(user);
         if (!user) { return done(null, false); }
         done(null, user);
-    }).catch(done);
+    }).catch(function (err) {
+        console.log(err.stack);
+        done(err);
+    });
 }));
 
 module.exports = passport;

@@ -7,7 +7,9 @@ const file2 = 'test_file2';
 const User = require('../../models').User;
 const co = require('co');
 const sequelize = require('../../misc/db').sequelize;
+const data = require('../fixtures/dummy.json');
 
+let user1 = data.user1;
 let token = '';
 
 describe('Maps', function () {
@@ -15,15 +17,31 @@ describe('Maps', function () {
     before(function (done) {
         co(function *() {
             yield sequelize.sync({ force: true });
-            request(app).post('/v1/auth/token')
-                .send({
-                    username: 'fishead@fishead.io',
-                    password: 'fishead'
-                })
-                .expect(function (res) {
-                    token = res.body.token;
-                })
-                .end(done);
+            /* local token */
+            // request(app).post('/v1/auth/token')
+            //     .send({
+            //         username: 'fishead@fishead.io',
+            //         password: 'fishead'
+            //     })
+            //     .expect(function (res) {
+            //         token = res.body.token;
+            //     })
+            //     .end(done);
+
+            /* remote token */
+            request('http://wormhole.fishead.io')
+                .post('/v1/users')
+                .send(user1)
+                .end(function (err, res) {
+                    request('http://wormhole.fishead.io')
+                        .post('/v1/auth/token')
+                        .send(user1)
+                        .end(function (err, res) {
+                            token = res.body.jsonweb_token;
+                            // console.log(token);
+                            done();
+                        });
+                });
         });
     });
 

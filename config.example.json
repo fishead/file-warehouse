@@ -18,6 +18,13 @@
         "dialect": "mysql",
         "logging": false
     },
+    "jwt": {
+        "secret": "cfvgyjimkdcfgvjhm",
+        "algorithm": "HS256",
+        "expires_in_minutes": 3600,
+        "subject": "fvgybh",
+        "issuer": "tfvygbhn"
+    },
     "oauth2": {
         "authorization_url": "http://wormhole.jcbel.com/v1/oauth2/authorize",
         "token_url": "http://wormhole.jcbel.com/v1/oauth2/token",
