@@ -4,3 +4,4 @@ config.json
 upload/*
 public/maps/*
 public/routedatas/*
+pm2.json
