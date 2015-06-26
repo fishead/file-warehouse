@@ -33,7 +33,7 @@ const fetchRouteData = function fetchRouteData(req, res, next) {
     res.sendFile(path.join(__dirname, '../', config.upload.dest, '../', category, req.params.dataName));
 };
 
-router.use(passport.authenticate('jwt', { session: false }));
+router.use(passport.authenticate('wormhole-token', { session: false }));
 router.post('/', saveRouteData);
 router.get('/:dataName', fetchRouteData);
 

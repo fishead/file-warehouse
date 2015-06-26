@@ -5,6 +5,7 @@ const User = require('../models').User;
 const OAuth2Strategy = require('passport-oauth2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
+const WormholeTokenStrategy = require('./passport_wormhole_token').Strategy;
 const co = require('co');
 const config = require('../config.json');
 const request = require('request');
@@ -119,6 +120,27 @@ passport.use('jwt', new JWTStrategy({
 
         // console.log(user);
         if (!user) { return done(null, false); }
+        done(null, user);
+    }).catch(function (err) {
+        console.log(err.stack);
+        done(err);
+    });
+}));
+
+passport.use('wormhole-token', new WormholeTokenStrategy(function (profile, done) {
+    co(function *() {
+        const result = yield User.findOrCreate({
+            where: {
+                email: profile.email
+            },
+            defaults: {
+                username: profile.email,
+                nickName: profile.email,
+                type: 'manager'
+            }
+        });
+        let user = result[0];
+
         done(null, user);
     }).catch(function (err) {
         console.log(err.stack);

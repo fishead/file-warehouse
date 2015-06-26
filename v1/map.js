@@ -30,7 +30,7 @@ const fetchMap = function fetchMap(req, res, next) {
     res.sendFile(path.join(__dirname, '../', config.upload.dest, '../', CATEGORY, req.params.mapName));
 };
 
-router.use(passport.authenticate('jwt', { session: false }));
+router.use(passport.authenticate('wormhole-token', { session: false }));
 router.post('/', saveMap);
 router.get('/:mapName', fetchMap);
 
