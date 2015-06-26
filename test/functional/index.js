@@ -37,7 +37,8 @@ describe('Maps', function () {
                         .post('/v1/auth/token')
                         .send(user1)
                         .end(function (err, res) {
-                            token = res.body.jsonweb_token;
+                            // token = res.body.jsonweb_token;
+                            token = res.body.access_token;
                             // console.log(token);
                             done();
                         });

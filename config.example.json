@@ -30,6 +30,7 @@
         "token_url": "http://wormhole.jcbel.com/v1/oauth2/token",
         "client_id": "2fa0afed372cffc7",
         "client_secret": "e97afdeb81723858b37d08b88ce28064",
-        "callback_url": "http://map-warehouse.fishead.io/v1/auth/callback"
+        "callback_url": "http://map-warehouse.fishead.io/v1/auth/callback",
+        "profile_url": "http://wormhole.fishead.io/v1/auth/profile"
     }
 }

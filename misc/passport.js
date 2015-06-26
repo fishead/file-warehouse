@@ -127,7 +127,9 @@ passport.use('jwt', new JWTStrategy({
     });
 }));
 
-passport.use('wormhole-token', new WormholeTokenStrategy(function (profile, done) {
+passport.use('wormhole-token', new WormholeTokenStrategy({
+    profileURL: config.oauth2.profile_url
+}, function (profile, done) {
     co(function *() {
         const result = yield User.findOrCreate({
             where: {

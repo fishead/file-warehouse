@@ -13,6 +13,7 @@ function WormholeTokenStrategy(options, verify) {
     if (!verify) { throw new TypeError('WormholeTokenStrategy requires a verify callback'); }
 
     this._tokenField = options.tokenField || 'wormhole_token' || 'token';
+    this._profileURL = options.profileURL;
 
     Strategy.call(this);
     this.name = 'wormhole-token';
@@ -22,9 +23,14 @@ function WormholeTokenStrategy(options, verify) {
 util.inherits(WormholeTokenStrategy, Strategy);
 
 WormholeTokenStrategy.prototype.authenticate = function authenticate(req, options) {
-    const whtoken = req.body[this._tokenField] || req.query[this._tokenField];
+    let whtoken = '';
+    if (req.headers.authorization) {
+        let auth = req.headers.authorization.split(' ');
+        if (auth.length === 2 && auth[0] === 'Bearer') { whtoken = auth[1]; }
+    } else {
+        whtoken = req.body[this._tokenField] || req.query[this._tokenField];
+    }
 
-    console.log(whtoken);
     if (!whtoken) {
         return this.fail({
             message: options.badRequestMessage || 'token required'
@@ -32,7 +38,7 @@ WormholeTokenStrategy.prototype.authenticate = function authenticate(req, option
     }
 
     let opts = {
-        url: 'http://wormhole.fishead.io/v1/auth/profile',
+        url: this._profileURL, //'http://wormhole.fishead.io/v1/auth/profile',
         headers: {
             'Authorization': 'Bearer ' + whtoken
         }
