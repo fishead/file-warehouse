@@ -1,7 +1,7 @@
 {
     "listen_port": 13510,
     "upload": {
-        "path": "./public",
+        "dest": "./upload/temp",
         "limits": {
             "files": 1,
             "fileSize": 10485760
@@ -11,7 +11,7 @@
         "host": "localhost",
         "port": 3306,
         "user": "root",
-        "password": "root",
+        "password": "",
         "database": "MapWarehouse"
     },
     "sequelize": {
@@ -26,10 +26,10 @@
         "issuer": "tfvygbhn"
     },
     "oauth2": {
-        "authorization_url": "http://wormhole.jcbel.com/v1/oauth2/authorize",
-        "token_url": "http://wormhole.jcbel.com/v1/oauth2/token",
-        "client_id": "2fa0afed372cffc7",
-        "client_secret": "e97afdeb81723858b37d08b88ce28064",
+        "authorization_url": "http://wormhole.fishead.io/v1/oauth2/authorize",
+        "token_url": "http://wormhole.fishead.io/v1/oauth2/token",
+        "client_id": "9f00f18ba166122f",
+        "client_secret": "17ea5cfdc49a270fb5af20095182b22c",
         "callback_url": "http://map-warehouse.fishead.io/v1/auth/callback",
         "profile_url": "http://wormhole.fishead.io/v1/auth/profile"
     }
