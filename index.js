@@ -17,7 +17,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multerParser({
-    dest: config.upload.dest
+    dest: config.upload.path
 }));
 
 app.use(passport.initialize());
@@ -42,7 +42,14 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 if(!module.parent) {
-    app.listen(config.listen_port, function (err) {
-        console.log('listening on ' + config.listen_port);
+	let sequelize = require('./misc/db').sequelize;
+	sequelize.sync({force: true}).then(function(){
+		console.log('=========');
+	    	app.listen(config.listen_port, function (err) {
+	        console.log('listening on ' + config.listen_port);
+
+	}).catch(function(err){
+		console.log(err.stack);
+	});
     });
 }
