@@ -5,7 +5,7 @@
 
 ## 注册
 ### ~~获取注册页面~~
-### 注册成为甲虫开发者 http://bootcamp.fishead.io
+### 注册成为甲虫开发者 http://bootcamp.jcbel.com
 
 
 ## 获取Token

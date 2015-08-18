@@ -95,7 +95,7 @@
 .markdown-preview { font-size: 1.25em; color: rgb(66, 66, 67); background-color: rgb(255, 255, 255); }
 .markdown-preview h1, .markdown-preview h2 { color: inherit; border-color: rgb(209, 209, 210); }
 .markdown-preview a { color: rgb(20, 146, 255); }
-.markdown-preview hr { background-color: rgb(255, 255, 255); }
+.markdown-preview hr { background-color: rgb(224, 224, 225); }
 .markdown-preview blockquote { color: rgb(66, 66, 67); border-left-color: rgb(147, 147, 149); }
 .markdown-preview table th, .markdown-preview table td { border-color: rgb(209, 209, 210); }
 .markdown-preview table th { background-color: rgb(255, 255, 255); }
@@ -103,6 +103,8 @@
 .markdown-preview table tr:nth-child(2n) { background-color: rgb(247, 247, 247); }
 .markdown-preview code { color: rgb(91, 91, 93); border-color: rgb(209, 209, 210); background-color: rgb(247, 247, 247); background-clip: padding-box; }
 .markdown-preview pre.editor-colors::shadow .line.cursor-line { background-color: transparent; }
+.markdown-preview { font-family: 'WenQuanYi Zen Hei' !important; }
+.markdown-preview pre.editor-colors { font-family: 'WenQuanYi Zen Hei' !important; }
 .bracket-matcher .region {
   border-bottom: 1px dotted lime;
   position: absolute;
@@ -308,6 +310,9 @@ pre.editor-colors .fold-marker:after,
 .support.class {
   color: #c18401;
 }
+.support.type {
+  color: #0184bc;
+}
 .support.function {
   color: #0184bc;
 }
@@ -466,7 +471,7 @@ pre.editor-colors .fold-marker:after,
 </ul>
 <h2 id="-">注册</h2>
 <h3 id="-"><del>获取注册页面</del></h3>
-<h3 id="-http-bootcamp-fishead-io">注册成为甲虫开发者 <a href="http://bootcamp.fishead.io">http://bootcamp.fishead.io</a></h3>
+<h3 id="-http-bootcamp-jcbel-com">注册成为甲虫开发者 <a href="http://bootcamp.jcbel.com">http://bootcamp.jcbel.com</a></h3>
 <h2 id="-token">获取Token</h2>
 <pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/auth/token</span></span></span></div></pre><blockquote>
 <p>实际URL为 <a href="http://map-warehouse.jcbel.com/v1/auth/token">http://map-warehouse.jcbel.com/v1/auth/token</a>, 下同  </p>
@@ -480,7 +485,7 @@ pre.editor-colors .fold-marker:after,
 <pre class="editor-colors lang-json"><div class="line"><span class="source json"><span class="meta structure dictionary json"><span class="punctuation definition dictionary begin json"><span>{</span></span></span></span></div><div class="line"><span class="source json"><span class="meta structure dictionary json"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double json"><span class="punctuation definition string begin json"><span>&quot;</span></span><span>token</span><span class="punctuation definition string end json"><span>&quot;</span></span></span><span class="meta structure dictionary value json"><span class="punctuation separator dictionary key-value json"><span>:</span></span><span>&nbsp;</span><span class="string quoted double json"><span class="punctuation definition string begin json"><span>&quot;</span></span><span>token-string</span><span class="punctuation definition string end json"><span>&quot;</span></span></span></span></span></span></div><div class="line"><span class="source json"><span class="meta structure dictionary json"><span class="punctuation definition dictionary end json"><span>}</span></span></span></span></div></pre>
 <h2 id="-token">使用Token</h2>
 <ul>
-<li>附加到HTTP Header,字段名<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">Authorization</code>，字段值为<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">Bearer token-string</code></li>
+<li>附加到HTTP Header,字段名<code style="font-family: Cousine, &#x6587;&#x6CC9;&#x9A7F;&#x6B63;&#x9ED1;;">Authorization</code>，字段值为<code style="font-family: Cousine, &#x6587;&#x6CC9;&#x9A7F;&#x6B63;&#x9ED1;;">Bearer token-string</code></li>
 <li><del>附加到Get请求的Query String，同时Get请求也可以使用上一种方式</del><pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Get&nbsp;/maps/FILENAME</span></span></span></div></pre><blockquote>
 <p>实际URL为 <a href="http://map-warehouse.jcbel.com/v1/maps/FILENAME">http://map-warehouse.jcbel.com/v1/maps/FILENAME</a>  </p>
 </blockquote>
@@ -491,7 +496,7 @@ pre.editor-colors .fold-marker:after,
 <pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Post&nbsp;/maps</span></span></span></div></pre><h4 id="-">参数</h4>
 <ul>
 <li>map, 文件表单<blockquote>
-<p>参数为一个文件表单，表单名为<code style="font-family: Cousine, WenQuanYi Zen Hei Mono;">map</code>，服务器会使用上传的文件的文件名存放文件</p>
+<p>参数为一个文件表单，表单名为<code style="font-family: Cousine, &#x6587;&#x6CC9;&#x9A7F;&#x6B63;&#x9ED1;;">map</code>，服务器会使用上传的文件的文件名存放文件</p>
 </blockquote>
 </li>
 </ul>
