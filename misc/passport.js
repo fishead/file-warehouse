@@ -92,8 +92,12 @@ passport.use('local-wormhole', new LocalStrategy({
                         // console.log(err.stack);
                         done(err);
                     });
+                } else {
+                    return done(null, false);
                 }
             });
+        } else {
+            return done(null, false);
         }
     });
 }));
