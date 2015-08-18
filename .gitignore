@@ -2,6 +2,7 @@ node_modules
 *.log
 config.json
 upload/*
+public/*
 public/maps/*
 public/routedatas/*
 pm2.json
