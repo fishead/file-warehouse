@@ -27,8 +27,9 @@ Post /auth/token
 
 
 ## 使用Token
-- 附加到HTTP Header,字段名`Authorization`，字段值为`Bearer token-string`
-- ~~附加到Get请求的Query String，同时Get请求也可以使用上一种方式~~
+- 附加到HTTP Header,字段名`Authorization`, 字段值为`Bearer token-string`
+- Post/Put/Delete请求的payload, 字段名为`bearer`
+- Get请求的Query String, 字段名为`bearer`
 ```
 Get /maps/FILENAME
 ```
