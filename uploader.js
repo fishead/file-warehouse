@@ -35,7 +35,7 @@ const fileFilter = function fileFilter(req, file, cb) {
     return cb(null, true);
 };
 
-module.exports = function upload(options) {
+const uploader = module.exports = function upload(options) { // eslint-disable-line no-unused-vars
     return multer({
         storage: storage(options),
         fileFilter: fileFilter,
