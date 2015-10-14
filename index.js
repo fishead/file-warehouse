@@ -1,54 +1,45 @@
 'use strict';
 
-const express = require('express');
+const app = module.exports = require('express')();
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const config = require('./config.json');
-const path = require('path');
-const passport = require('./misc/passport');
 const cors = require('cors');
-const co = require('co');
-const multerParser = require('multer-parser');
+const debug = require('debug')('file-warehouse:index');
+const uploader = require('./uploader');
 
-let app = express();
 app.enable('trust proxy');
 app.use(logger('dev'));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multerParser({
-    dest: config.upload.dest
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cors());
-
-app.use('/v1', require('./v1'));
-
-app.get('/', function (req, res, next) {
-    res.sendFile(path.join(__dirname, 'index.html'));
+const fieldConfig = [
+    {
+        name: 'single',
+        maxCount: 1
+    }, {
+        name: 'multiple',
+        maxCount: 10
+    }
+];
+app.post('/*', uploader(config.upload).fields(fieldConfig), function (req, res) {
+    return res.end();
 });
 
-app.use(function (req, res, next) {
+app.use(function (req, res) {
     res.status(404).end();
 });
 
-app.use(function (err, req, res, next) {
-    console.log(err.stack);
-    res.status(err.status || 500).end(err.message);
+app.use(function (err, req, res) {
+    debug(err);
+    res.status(500).end();
 });
 
-module.exports = app;
-
 if (!module.parent) {
-    const sequelize = require('./misc/db').sequelize;
-    const server = require('http').Server(app);
-
-    sequelize.sync({ force: false })
-    .then(function() {
-        server.listen(config.listen_port, function() {
-            console.log('listenning on ' + config.listen_port);
-        });
+    const port = config.misc.listen_port;
+    app.listen(port, function () {
+        debug('listening on ' + port);
     });
 }
