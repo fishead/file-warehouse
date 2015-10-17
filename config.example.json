@@ -3,6 +3,7 @@
         "listen_port": 13510
     },
     "upload": {
-        "path": "./assets"
+        "meta": "./storage/meta",
+        "chunk": "./storage/chunk"
     }
 }
