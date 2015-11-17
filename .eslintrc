@@ -4,6 +4,6 @@
         "strict": 0,          // http://eslint.org/docs/rules/strict
         "indent": [2, 4],                // http://eslint.org/docs/rules/
         "func-names": 0,                 // http://eslint.org/docs/rules/func-names
-        "comma-dangle": [2, "never"],    // http://eslint.org/docs/rules/comma-dangle
+        "comma-dangle": [2, "never"]    // http://eslint.org/docs/rules/comma-dangle
     }
 }
