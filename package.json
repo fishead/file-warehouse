@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --harmony -e js,json,html index.js",
+    "start": "./node_modules/.bin/nodemon --harmony -e js,json,html index.js",
     "test": "nodemon --harmony ./node_modules/.bin/mocha --harmony --bail --reporter spec test/functional"
   },
   "repository": {
@@ -30,6 +30,7 @@
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.5.1",
     "mocha": "^2.2.5",
+    "nodemon": "^1.8.0",
     "supertest": "^1.0.1"
   }
 }
