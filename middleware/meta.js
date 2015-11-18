@@ -5,10 +5,15 @@ const fs = require('co-fs-plus');
 const config = require('../config.js');
 const co = require('co');
 
+const getMetaPath = function getMetaPath(bucket, reqPath) {
+    const metaPath = path.join(bucket.path, reqPath);
+    return metaPath;
+};
+
 const saveMeta = function saveMeta(req, res, next) {
     co(function *() {
         const meta = res.body.meta;
-        const metaPath = meta.__path;
+        const metaPath = getMetaPath(res.body.bucket, req.path);
 
         yield fs.mkdirp(path.dirname(metaPath));
         yield fs.writeFile(metaPath, JSON.stringify(meta), 'utf8');
@@ -18,23 +23,31 @@ const saveMeta = function saveMeta(req, res, next) {
 };
 
 const readMeta = function readMeta(req, res, next) {
-    const bucket = res.body.bucket;
-    const metaPath = path.join(bucket.path, req.path);
-    res.body = res.body || {};
-
     co(function *() {
+        const metaPath = getMetaPath(res.body.bucket, req.path);
+        res.body = res.body || {};
+
         const rawMeta = yield fs.readFile(metaPath, 'utf8');
         const meta = JSON.parse(rawMeta);
-        meta.__path = metaPath;
         res.body.meta = meta;
+
+        if (req.method.toLowerCase() === 'delete') {
+            res.status(202).send();
+        }
+
         next();
     }).catch((err) => {
         if (err.errno === -2 && err.code === 'ENOENT') {
-            const meta = {
-                __path: metaPath
-            };
-            res.body.meta = meta;
-            return next();
+            if (req.method.toLowerCase() === 'get') {
+                return res.status(404).end();
+            }
+            if (req.method.toLowerCase() === 'post') {
+                res.body.meta = {};
+                return next();
+            }
+            if (req.method.toLowerCase() === 'delete') {
+                return res.status(204).end();
+            }
         }
         next(err);
     });
@@ -52,8 +65,7 @@ const removeEmptyMetaFolder = function removeEmptyMetaFolder(metaFolderPath) {
 
 const removeMeta = function removeMeta(req, res, next) {
     co(function *() {
-        const meta = res.body.meta;
-        const metaPath = meta.__path;
+        const metaPath = getMetaPath(res.body.bucket, req.path);
         yield fs.unlink(metaPath);
         yield removeEmptyMetaFolder(path.dirname(metaPath));
         next();
