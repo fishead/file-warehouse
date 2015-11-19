@@ -4,17 +4,6 @@ const app = module.exports = require('express')();
 const config = require('../config.js');
 const path = require('path');
 
-// const ensureBucketExists = function ensureBucketExists(req, res, next) {
-//     const urlPath = req.path.split('/');
-//     if (urlPath.length < 3) {
-//         return res.status(400).end('filename not exists');
-//     }
-//     if (urlPath.length < 2) {
-//         return res.status(400).end('bucket not exists');
-//     }
-//     next();
-// };
-
 const findBucket = function findBucket(req, res, next) {
     const bucketName = req.params.bucketName;
     const bucketPath = path.join(config.upload.meta, bucketName);
