@@ -4,3 +4,4 @@ config.json
 storage
 pm2.json
 .idea
+config.js
