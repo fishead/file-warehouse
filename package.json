@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/nodemon --harmony -e js,json,html index.js",
-    "test": "nodemon --harmony ./node_modules/.bin/mocha --harmony --bail --reporter spec test/functional"
+    "test": "nodemon --harmony ./node_modules/.bin/mocha --harmony --bail --reporter spec test/functional",
+    "test-win": "mocha --harmony -e js,json --bail --reporter spec test\\functional",
+    "cover": "node --harmony ./node_modules/.bin/istanbul cover _mocha -- --harmony test/functional",
+    "cover-win": "node --harmony .\\node_modules\\.bin\\istanbul --harmony cover C:\\Users\\xiaoyi\\AppData\\Roaming\\npm\\node_modules\\mocha\\bin\\_mocha -- --harmony test\\functional",
+    "dummy": "node --harmony dummy-data.js",
+    "setup": "node --harmony bin/root.js"
   },
   "repository": {
     "type": "git",

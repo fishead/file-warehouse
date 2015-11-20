@@ -63,7 +63,8 @@ const removeEmptyMetaFolder = function removeEmptyMetaFolder(metaFolderPath) {
         if (path.dirname(metaFolderPath) !== config.upload.meta) {
             yield removeEmptyMetaFolder(path.dirname(metaFolderPath));
         }
-    }).catch(() => {});
+    }).catch(() => {
+    });
 };
 
 const removeMeta = function removeMeta(metaPath) {
@@ -95,7 +96,8 @@ const removeEmptyChunkFolder = function removeEmptyChunkFolder(chunkFolderPath) 
         if (path.dirname(chunkFolderPath) !== config.upload.chunk) {
             yield removeEmptyChunkFolder(path.dirname(chunkFolderPath));
         }
-    }).catch(() => {});
+    }).catch(() => {
+    });
 };
 
 const removeChunk = function removeChunk(meta) {
@@ -135,7 +137,9 @@ const fetchFile = function fetchFile(req, res, next) {
         const metaPath = getMetaPath(res.body.bucket, req.path);
         const meta = yield readMeta(metaPath);
 
-        if (!meta.hash) { return res.status(404).end(); }
+        if (!meta.hash) {
+            return res.status(404).end();
+        }
 
         meta.downloads += 1;
 
@@ -149,7 +153,9 @@ const fetchFile = function fetchFile(req, res, next) {
             options.headers['Content-Disposition'] = 'attachment; filename=' + meta.originalname;
         }
         res.sendFile(chunkPath, options, (err) => {
-            if (err) { return next(err); }
+            if (err) {
+                return next(err);
+            }
             co(function *() {
                 yield cofs.writeFile(metaPath, JSON.stringify(meta), 'utf8');
                 res.end();
@@ -168,8 +174,10 @@ const uploadFile = function uploadFile(req, res, next) {
     co(function *() {
         const metaPath = getMetaPath(res.body.bucket, req.path);
         const meta = yield readMeta(metaPath);
+        if (!req.file) {
+            return res.status(400).end('文件不能为空');
+        }
         const singleFile = req.file;
-
         if (meta.hash && meta.hash !== singleFile.hash) {
             const oldStatPath = getStatPath(meta.hash);
             let oldStat = yield readStat(oldStatPath);
@@ -215,7 +223,9 @@ const removeFile = function removeFile(req, res, next) {
         const metaPath = getMetaPath(res.body.bucket, req.path);
         const meta = yield readMeta(metaPath);
 
-        if (!meta.hash) { return res.status(204).end(); }
+        if (!meta.hash) {
+            return res.status(204).end();
+        }
         const statPath = getStatPath(meta.hash);
         let stat = yield readStat(statPath);
         stat = decreateChunkRef(stat, metaPath);
