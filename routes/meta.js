@@ -208,7 +208,7 @@ const uploadFile = function uploadFile(req, res, next) {
         yield writeStat(newStatPath, newStat);
 
         yield writeMeta(metaPath, meta);
-        res.status(201).end();
+        res.status(201).end('上传成功');
     }).catch((err) => {
         if (err.errno === -2 && err.code === 'ENOENT') {
             return res.status(404).end();
@@ -233,7 +233,7 @@ const removeFile = function removeFile(req, res, next) {
 
         yield removeChunk(meta);
         yield removeMeta(metaPath);
-        res.status(200).end();
+        res.status(200).end('删除成功！');
     }).catch((err) => {
         if (err.errno === -2 && err.code === 'ENOENT') {
             return res.status(204).end();

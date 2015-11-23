@@ -25,9 +25,9 @@ module.exports = {
         }
     },
     upload: {
-        meta: '/Users/fishead/Workbench/JiaChong/file_warehouse_api/storage/meta',
-        ref: '/Users/fishead/Workbench/JiaChong/file_warehouse_api/storage/ref',
-        chunk: '/Users/fishead/Workbench/JiaChong/file_warehouse_api/storage/chunk',
+        meta: 'E:/files/meta',
+        ref: 'E:/files/ref',
+        chunk: 'E:/files/chunk',
         single: {
             fileFieldName: 'single'
         }
