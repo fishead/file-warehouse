@@ -1,0 +1,13 @@
+{
+    "curly": true,
+    "evil": true,
+    "lastsemic": true,
+    "devel": true,
+    "node": true,
+    "esnext": true,
+    "unused": false,
+    "undef": true,
+    "predef": ["describe", "it", "before"],
+    "plusplus": true,
+    "expr": true
+}
