@@ -1,7 +1,8 @@
 'use strict';
 
-const passport = require('passport');
+const passport = module.exports = require('passport');
 const JWTStrategy = require('passport-jwt').Strategy;
+const BeatleTagStrategy = require('passport-beatle-tag').Strategy;
 const config = require('../config.json');
 
 passport.serializeUser((user, done) => {
@@ -27,4 +28,8 @@ passport.use('jwt', new JWTStrategy({
     done(null, payload);
 }));
 
-module.exports = passport;
+passport.use('beatle-tag', new BeatleTagStrategy({
+
+}), (profile, done) => {
+    done(null, profile);
+});

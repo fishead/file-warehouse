@@ -29,6 +29,7 @@
     "morgan": "^1.5.3",
     "multer": "^1.0.6",
     "passport": "^0.2.1",
+    "passport-beatle-tag": "jcnetwork/passport-beatle-tag",
     "passport-jwt": "^1.1.0"
   },
   "devDependencies": {
